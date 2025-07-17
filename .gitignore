@@ -1,0 +1,10 @@
+# Backend dependencies
+server/node_modules/
+
+# Frontend (if you're using React)
+chatspree/node_modules/
+chatspree/build/
+
+# Environment and logs
+.env
+*.log
