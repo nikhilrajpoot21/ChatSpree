@@ -2,7 +2,7 @@
 
 // Implementing Queue datastructur using Array in javaScript
 
-class Queue {
+export class Queue {
     constructor() {
         this.q = [];
     }
@@ -16,8 +16,9 @@ class Queue {
     }
 
     dequeue() {
-        if (!this.isEmpty()) this.q.shift();
+    return this.isEmpty() ? -1 : this.q.shift();
     }
+
 
     getFront() {
         return this.isEmpty() ? -1 : this.q[0];
@@ -26,4 +27,9 @@ class Queue {
     display() {
         console.log(this.q.join(' '));
     }
+    
+    getLength() {
+    return this.q.length;
+    }
+
 }
