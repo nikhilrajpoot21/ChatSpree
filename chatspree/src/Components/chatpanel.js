@@ -6,14 +6,12 @@ export default function Chatpanel() {
   const [username, setUsername] = useState("");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const [room, setRoom] = useState("room123"); // Default room
+
 
   useEffect(() => {
      const name = prompt("Enter your name")
      socket.emit("join-event", name);
      setUsername(name);
-
-    socket.emit("join-room", {username:name,room:"room123"}); // Join a specific room, e.g., "room1"
 
      socket.on("receive-message", (data) => {
       setMessages((prev) => [...prev, { 
@@ -33,7 +31,7 @@ export default function Chatpanel() {
     if (trimmedMessage !== "") {
       const newMessage = { 
         sender: username, 
-        text: trimmedMessage,room: room 
+        text: trimmedMessage,
       };
       socket.emit("send-message", newMessage);
       setMessages((prev) => [...prev, newMessage]);
