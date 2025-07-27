@@ -49,8 +49,10 @@ if (pairpool.getLength() >= 2) {
   const socketB = io.sockets.sockets.get(userB);
 
   // Validate both sockets exist
+  const roomArr = []
   if (socketA && socketB) {
     const roomId = generateRoomId();
+    roomArr.push(roomId)
 
     socketA.join(roomId);
     socketB.join(roomId);
@@ -74,8 +76,8 @@ if (pairpool.getLength() >= 2) {
 
   // Message
   socket.on("send-message", (data) => {
-    console.log(`From ${data.sender}: ${data.text}`);
-    socket.broadcast.to(data.room).emit("receive-message", {
+    console.log(`From ${socket.data.room} ${data.sender}: ${data.text}`);
+    socket.broadcast.to(socket.data.room).emit("receive-message", {
       username: data.sender,
       message: data.text,
     });
